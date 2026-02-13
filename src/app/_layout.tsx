@@ -1,6 +1,10 @@
+import { useEffect } from "react";
+import { Platform } from "react-native";
 import { Stack } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AuthProvider } from "@/contexts/authContext";
+import * as NavigationBar from "expo-navigation-bar";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -16,9 +20,17 @@ const queryClient = new QueryClient({
 });
 
 export default function Layout() {
+  useEffect(() => {
+    if (Platform.OS === "android") {
+      NavigationBar.setVisibilityAsync("hidden");
+      NavigationBar.setBehaviorAsync("overlay-swipe");
+    }
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
+        <StatusBar style="light" backgroundColor="transparent" translucent />
         <Stack>
           <Stack.Screen
             name="(protected)"

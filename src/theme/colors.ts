@@ -16,6 +16,7 @@ export const colors = {
   secondary: "#EC4899", // Pink 500
   tertiary: "#10B981", // Emerald 500
   danger: "#EF4444", // Red 500
+  dangerLight: "#7F1D1D", // Red 900 (dark bg for danger items)
 
   // Bordas e Divisores
   border: "#3F3F46", // Zinc 700
